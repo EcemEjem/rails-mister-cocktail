@@ -4,6 +4,32 @@
   <strong>Name:</strong>
   <%= @cocktail.name %>
 </p>
+<% @cocktail.doses.each do |dose| %>
+<%= dose.description %>
+<%= dose.ingredient.name  %>
+<% end %>
+
+<!-- displaying purposes l 7-10. dose un ingredient i var model den gor,
+tipki, ingredient in name i oldugu gibi...falan filan -->
+
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+<%= f.input :description %>
+<%= f.input :ingredient_id, as: :select, collection: @ingredients  %>
+<%= f.submit %>
+<% end %>
+<!-- we're making a form for this model POST cocktail_dose_path(@cocktail)
+and will send the resulst to form for this location. -->
+
+<!-- we're creating an input/ text field for description. -->
+
+<!-- PE tab yazinca bu cone'lar cikiyor kisa yol! -->
+
+<!-- select drop down menu gibi -->
 
 <%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |
 <%= link_to 'Back', cocktails_path %>
+
+
+<!-- ECO NOTES:
+simple_form_for is a gem, more user friendly,
+form_for is part of rails -->
